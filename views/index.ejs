@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Mini Whatsapp</title>
+</head>
+<body>
+  <h2>All Chats! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/chat/new"><button class="newBtn">New chat</button></a>
+  </h2>
+  
+  <% for(let chat of chats){ %>
+    <div class="chat">
+      <p>From : <span><%= chat.from %></span></p>
+      <p class="msg"><span><%= chat.msg %></span></p>
+      <p>Received By : <span><%= chat.to %></span></p>
+
+      <a href="/chat/<%= chat._id %>/edit"><button class="editBtn btn">Edit Msg</button></a>
+      &nbsp;&nbsp; &nbsp;&nbsp;
+      <form method="post" action="/chat/<%= chat._id %>/delete?_method=DELETE" class="deleteForm">
+        <button class="deleteBtn btn">Delete Chat</button>
+      </form>
+
+      <span class="date">
+        <%= chat.created_at.toString().split(" ")[4] %> &nbsp;&nbsp;
+        <%= chat.created_at.toString().split(" ").slice(0, 4).join(" ") %>
+      </span>
+    </div> 
+  <% } %>
+</body>
+</html>
